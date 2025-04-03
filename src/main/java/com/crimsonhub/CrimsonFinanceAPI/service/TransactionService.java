@@ -13,7 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -81,35 +81,37 @@ public class TransactionService {
                 .orElseThrow(() -> new CardNotFoundException(cardId));
     }
 
-    public String transactionBalances(String type, Long accountId) {
-
+    /**
+     * Retorna o saldo total das transações de um determinado tipo para um alvo específico.
+     *
+     * @param type      O tipo de transação (ex: "CARD_EXPENSE", "EXPENSE", "REVENUE").
+     * @param targetId  O identificador do autor das transações.
+     * @return O saldo total das transações como uma string.
+     */
+    public String transactionBalances(String type, Long targetId) {
+        TransactionType transactionType = TransactionType.valueOf(type);
+        return switch (transactionType) {
+            case CARD_EXPENSE -> transactionRepository.getCardExpensesBalance(targetId).toString();
+            case EXPENSE -> transactionRepository.getExpensesBalance(targetId).toString();
+            case REVENUE -> transactionRepository.getRevenuesBalance(targetId).toString();
+            default -> "";
+        };
     }
 
-    public Set<TransactionResponseDTO> transactionTopBalances(String type, Long accountId) {
-
-    }
-
-    public String revenuesBalance(Long accountId) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
-        return decimalFormat.format(transactionRepository.getRevenuesBalance(accountId));
-    }
-
-    public String expensesBalance(Long accountId) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
-        return decimalFormat.format(transactionRepository.getExpensesBalance(accountId));
-    }
-
-    public String cardsExpensesBalance(Long accountId) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
-        return decimalFormat.format(transactionRepository.getCardExpensesBalance(accountId));
-    }
-
-    public Set<TransactionResponseDTO> revenueTransactionsTop(Long accountId) {
-        return transactionRepository.getRevenueTransactionsTop(accountId);
-    }
-
-    public Set<TransactionResponseDTO> expenseTransactionsTop(Long accountId) {
-        return transactionRepository.getExpenseTransactionsTop(accountId);
+    /**
+     * Retorna as transações de maior impacto (top) para um determinado tipo e alvo.
+     *
+     * @param type     O tipo de transação (ex: "EXPENSE", "REVENUE").
+     * @param targetId O identificador do alvo das transações.
+     * @return Um conjunto de objetos {@code TransactionResponseDTO} contendo as transações mais relevantes.
+     */
+    public Set<TransactionResponseDTO> transactionTopBalances(String type, Long targetId) {
+        TransactionType transactionType = TransactionType.valueOf(type);
+        return switch (transactionType) {
+            case EXPENSE -> transactionRepository.getExpenseTransactionsTop(targetId);
+            case REVENUE -> transactionRepository.getRevenueTransactionsTop(targetId);
+            default -> Collections.emptySet();
+        };
     }
 
     /**
