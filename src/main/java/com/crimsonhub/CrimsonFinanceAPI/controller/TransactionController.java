@@ -1,6 +1,5 @@
 package com.crimsonhub.CrimsonFinanceAPI.controller;
 
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.account.AccountsBalanceResponseDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.transaction.TransactionResponseDTO;
 import jakarta.validation.Valid;
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.transaction.TransactionCreateDTO;
@@ -67,30 +66,42 @@ public class TransactionController {
     /**
      * Endpoint para obter o saldo das transações de um determinado tipo.
      *
-     * <p>Este metodo recebe um tipo de transação e o ID da conta e retorna o saldo correspondente.
+     * <p>Este metodo recebe um tipo de transação e o ID da conta ou cartão e retorna o saldo correspondente.
      * O tipo de transação pode indicar se a consulta é para cartões de crédito, receitas ou despesas.</p>
      *
      * @param type      O tipo de transação (exemplo: "credit", "revenue", "expense").
-     * @param accountId O ID da conta para a qual o saldo será consultado.
+     * @param targetId O ID da conta para a qual o saldo será consultado.
      * @return ResponseEntity contendo o saldo calculado no formato JSON.
      */
     @GetMapping(
-            value = "{type}/balances",
+            value = "/balances/{type}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             headers = {"Content-Type=application/json", "Accept=application/json"}
     )
-    public ResponseEntity<?> transactionBalances(@PathVariable String type, @RequestParam Long accountId) {
-        String response = transactionService.transactionBalances(type, accountId);
+    public ResponseEntity<?> transactionBalances(@PathVariable String type, @RequestParam Long targetId) {
+        String response = transactionService.transactionBalances(type, targetId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    /**
+     * Endpoint para obter os principais saldos das transações de um determinado tipo.
+     *
+     * <p>
+     *   Este metodo recebe um tipo de transação e o ID da conta e retorna os saldos correspondentes.
+     *   O tipo de transação pode indicar se a consulta é para receitas ou despesas.
+     * </p>
+     *
+     * @param type      O tipo de transação (exemplo: "revenue", "expense").
+     * @param targetId  O ID da conta para a qual o saldo será consultado.
+     * @return ResponseEntity contendo a lista dos principais saldos no formato JSON.
+     */
     @GetMapping(
-            value = "{type}/top-balances",
+            value = "/top-balances/{type}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             headers = {"Content-Type=application/json", "Accept=application/json"}
     )
-    public ResponseEntity<?> transactionTopBalances(@PathVariable String type, @RequestParam Long accountId) {
-        Set<TransactionResponseDTO> response = transactionService.transactionTopBalances(type, accountId);
+    public ResponseEntity<?> transactionTopBalances(@PathVariable String type, @RequestParam Long targetId) {
+        Set<TransactionResponseDTO> response = transactionService.transactionTopBalances(type, targetId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
