@@ -29,13 +29,13 @@ import java.util.Set;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
     @Query(value = "SELECT SUM(amount) FROM transaction WHERE id_account = :accountId AND type = 1", nativeQuery = true)
-    BigDecimal getRevenuesBalance(Long accountId);
+    String getRevenuesBalance(Long accountId);
 
     @Query(value = "SELECT SUM(amount) FROM transaction WHERE id_account = :accountId AND type = 0", nativeQuery = true)
-    BigDecimal getExpensesBalance(Long accountId);
+    String getExpensesBalance(Long accountId);
 
     @Query(value = "SELECT SUM(amount) FROM transaction WHERE id_card = :cardId AND type = 3", nativeQuery = true)
-    BigDecimal getCardExpensesBalance(Long cardId);
+    String getCardExpensesBalance(Long cardId);
 
     @Query(value = "SELECT id, amount, category FROM transaction WHERE id_account = :accountId AND type = 1 ORDER BY amount DESC limit 5", nativeQuery = true)
     Set<TransactionResponseDTO> getRevenueTransactionsTop(Long accountId);

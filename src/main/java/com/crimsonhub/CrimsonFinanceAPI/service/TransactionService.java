@@ -91,9 +91,9 @@ public class TransactionService {
     public String transactionBalances(String type, Long targetId) {
         TransactionType transactionType = TransactionType.valueOf(type);
         return switch (transactionType) {
-            case CARD_EXPENSE -> transactionRepository.getCardExpensesBalance(targetId).toString();
-            case EXPENSE -> transactionRepository.getExpensesBalance(targetId).toString();
-            case REVENUE -> transactionRepository.getRevenuesBalance(targetId).toString();
+            case CARD_EXPENSE -> transactionRepository.getCardExpensesBalance(targetId);
+            case EXPENSE -> transactionRepository.getExpensesBalance(targetId);
+            case REVENUE -> transactionRepository.getRevenuesBalance(targetId);
             default -> "";
         };
     }
