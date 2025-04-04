@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 /**
@@ -69,4 +70,7 @@ public interface CardRepository extends JpaRepository<Card, Long> {
             "AND MONTH(i.dateDue) = :month " +
             "AND YEAR(i.dateDue) = :year")
     Set<Invoice> findInvoicesInMonthByCardId(Long id, int month, int year);
+
+    @Query("SELECT c.currentExpenses FROM Card c WHERE c.profile.id = :profileId")
+    String getCardsBalance(Long profileId);
 }
