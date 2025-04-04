@@ -93,6 +93,16 @@ public class Card {
     private BigDecimal creditLimit;
 
     /**
+     * Limite de crédito do cartão já utilizado.
+     * <p>
+     *     Configurado com precisão ed até 12 dígitos e 2 casas decimais.
+     *     Este campo é obrigatório.
+     * </p>
+     */
+    @Column(name = "current_expenses", precision = 12, scale = 2, nullable = false)
+    private BigDecimal currentExpenses = BigDecimal.ZERO;
+
+    /**
      * Transações associadas ao cartão.
      * <p>
      * Relacionamento <code>@OneToMany</code> com a entidade {@link Transaction}, utilizando o <code>id_card</code> como chave estrangeira.
