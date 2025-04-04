@@ -97,6 +97,15 @@ public class CardController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @GetMapping(
+            value = "/cardsBalance",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<?> cardsBalance(@RequestParam Long profileId) {
+        String response = cardService.cardsBalance(profileId);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
     /**
      * Retorna todas as transações associadas a um cartão específico.
      *
