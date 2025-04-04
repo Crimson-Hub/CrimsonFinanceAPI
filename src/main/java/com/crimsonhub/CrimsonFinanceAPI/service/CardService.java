@@ -95,6 +95,10 @@ public class CardService {
         return cardRepository.findTransactionsByCardId(id);
     }
 
+    public String cardsBalance(Long profileId) {
+        return cardRepository.getCardsBalance(profileId);
+    }
+
     /**
      * Atribui uma fatura a um cartão.
      *
