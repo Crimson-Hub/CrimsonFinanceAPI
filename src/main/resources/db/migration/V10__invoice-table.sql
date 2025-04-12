@@ -1,0 +1,9 @@
+CREATE TABLE invoice(
+    id SERIAL UNIQUE PRIMARY KEY,
+    card_id BIGINT NOT NULL,
+    amount_due DECIMAL(12, 2) NOT NULL DEFAULT 0.00,
+    date_due DATE NOT NULL,
+    closing_date DATE NOT NULL,
+    paid BOOLEAN NOT NULL DEFAULT FALSE,
+    CONSTRAINT fk_card FOREIGN KEY(card_id) REFERENCES card(id) ON DELETE CASCADE
+)

@@ -1,7 +1,5 @@
 package com.crimsonhub.CrimsonFinanceAPI.domain.dto.account;
 
-import com.crimsonhub.CrimsonFinanceAPI.domain.type.AccountType;
-
 import java.math.BigDecimal;
 import java.util.Date;
 

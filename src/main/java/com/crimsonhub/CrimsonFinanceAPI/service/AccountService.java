@@ -5,8 +5,7 @@ import com.crimsonhub.CrimsonFinanceAPI.domain.dto.account.AccountResponseDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.account.AccountUpdateDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Account;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Profile;
-import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Transaction;
-import com.crimsonhub.CrimsonFinanceAPI.domain.type.AccountType;
+import com.crimsonhub.CrimsonFinanceAPI.domain.entity.odl.Transaction;
 import com.crimsonhub.CrimsonFinanceAPI.exception.AccountNotFoundException;
 import com.crimsonhub.CrimsonFinanceAPI.exception.ProfileNotFoundException;
 import com.crimsonhub.CrimsonFinanceAPI.repository.AccountRepository;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.Set;
 
 /**

@@ -1,12 +1,9 @@
 package com.crimsonhub.CrimsonFinanceAPI.controller;
 
+import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.*;
 import jakarta.validation.Valid;
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.CardAssignDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.CardResponseDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.CardUpdateDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.InvoiceAssignDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Invoice;
-import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Transaction;
+import com.crimsonhub.CrimsonFinanceAPI.domain.entity.odl.Transaction;
 import com.crimsonhub.CrimsonFinanceAPI.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -103,6 +100,15 @@ public class CardController {
     )
     public ResponseEntity<?> cardsBalance(@RequestParam Long profileId) {
         String response = cardService.cardsBalance(profileId);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping(
+            value = "/cardsTop",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<?> cardsTop(@RequestParam Long profileId) {
+        Set<CardDashboardResponseDTO> response = cardService.cardsTop(profileId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

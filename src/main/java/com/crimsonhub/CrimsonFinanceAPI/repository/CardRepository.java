@@ -1,14 +1,14 @@
 package com.crimsonhub.CrimsonFinanceAPI.repository;
 
+import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.CardDashboardResponseDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.CardResponseDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Card;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Invoice;
-import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Transaction;
+import com.crimsonhub.CrimsonFinanceAPI.domain.entity.odl.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 /**
@@ -73,4 +73,7 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
     @Query("SELECT c.currentExpenses FROM Card c WHERE c.profile.id = :profileId")
     String getCardsBalance(Long profileId);
+
+    @Query("SELECT c.cardFlag, c.description FROM Card c WHERE c.profile.id = :id ORDER BY c.currentExpenses DESC LIMIT 5")
+    Set<CardDashboardResponseDTO> getTopCardsByProfileId(Long profileId);
 }

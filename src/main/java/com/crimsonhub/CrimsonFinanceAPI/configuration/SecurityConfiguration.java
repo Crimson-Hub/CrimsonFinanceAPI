@@ -68,6 +68,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.DELETE, "/api/card/delete").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/card/cards").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/card/cardsBalance").permitAll()
+                        .requestMatchers(HttpMethod.GET, "api/card/cardsTop").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/card/transactions").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/card/invoice/assign").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/card/invoices").permitAll()

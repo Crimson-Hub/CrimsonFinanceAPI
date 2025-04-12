@@ -2,8 +2,7 @@ package com.crimsonhub.CrimsonFinanceAPI.service;
 
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.transaction.TransactionCreateDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.transaction.TransactionResponseDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Transaction;
-import com.crimsonhub.CrimsonFinanceAPI.domain.type.TransactionType;
+import com.crimsonhub.CrimsonFinanceAPI.domain.entity.odl.Transaction;
 import com.crimsonhub.CrimsonFinanceAPI.exception.AccountNotFoundException;
 import com.crimsonhub.CrimsonFinanceAPI.exception.CardNotFoundException;
 import com.crimsonhub.CrimsonFinanceAPI.repository.AccountRepository;

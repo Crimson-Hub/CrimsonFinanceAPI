@@ -2,7 +2,7 @@ package com.crimsonhub.CrimsonFinanceAPI.repository;
 
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.account.AccountResponseDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Account;
-import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Transaction;
+import com.crimsonhub.CrimsonFinanceAPI.domain.entity.odl.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,12 +1,11 @@
 package com.crimsonhub.CrimsonFinanceAPI.repository;
 
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.transaction.TransactionResponseDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Transaction;
+import com.crimsonhub.CrimsonFinanceAPI.domain.entity.odl.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 /**

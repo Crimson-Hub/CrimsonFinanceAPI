@@ -1,13 +1,10 @@
 package com.crimsonhub.CrimsonFinanceAPI.service;
 
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.CardAssignDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.CardResponseDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.CardUpdateDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.InvoiceAssignDTO;
+import com.crimsonhub.CrimsonFinanceAPI.domain.dto.card.*;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Card;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Invoice;
 import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Profile;
-import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Transaction;
+import com.crimsonhub.CrimsonFinanceAPI.domain.entity.odl.Transaction;
 import com.crimsonhub.CrimsonFinanceAPI.exception.CardNotFoundException;
 import com.crimsonhub.CrimsonFinanceAPI.exception.ProfileNotFoundException;
 import com.crimsonhub.CrimsonFinanceAPI.repository.CardRepository;
@@ -97,6 +94,10 @@ public class CardService {
 
     public String cardsBalance(Long profileId) {
         return cardRepository.getCardsBalance(profileId);
+    }
+
+    public Set<CardDashboardResponseDTO> cardsTop(Long profileId) {
+        return cardRepository.getTopCardsByProfileId(profileId);
     }
 
     /**

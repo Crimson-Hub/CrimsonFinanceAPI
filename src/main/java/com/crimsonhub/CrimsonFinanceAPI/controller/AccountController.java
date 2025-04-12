@@ -5,7 +5,7 @@ import jakarta.validation.Valid;
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.account.AccountCreateDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.account.AccountResponseDTO;
 import com.crimsonhub.CrimsonFinanceAPI.domain.dto.account.AccountUpdateDTO;
-import com.crimsonhub.CrimsonFinanceAPI.domain.entity.Transaction;
+import com.crimsonhub.CrimsonFinanceAPI.domain.entity.odl.Transaction;
 import com.crimsonhub.CrimsonFinanceAPI.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
