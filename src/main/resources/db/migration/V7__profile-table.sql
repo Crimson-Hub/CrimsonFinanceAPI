@@ -8,7 +8,7 @@ CREATE TABLE profile (
     birthday DATE,
     phone VARCHAR(13),
     nationality VARCHAR(12),
-    identification_number VARCHAR(11) UNIQUE NOT NULL,
+    identification_number VARCHAR(11) UNIQUE,
     cep VARCHAR(8),
-    created_at TIMESTAMP NOT NULL
+    created_at TIMESTAMP DEFAULT NOW()
 );

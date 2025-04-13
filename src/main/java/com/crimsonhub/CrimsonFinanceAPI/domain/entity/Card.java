@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Entity
 @Table(name = "card")
@@ -34,12 +33,4 @@ public class Card {
 
     @Column(name = "description", nullable = false, length = 40)
     private String description;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_id", unique = true)
-    private Set<CardTransaction> transactions;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_id", unique = true)
-    private Set<Invoice> invoices;
 }

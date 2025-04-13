@@ -1,9 +1,15 @@
 CREATE INDEX idx_profile_email ON profile(email);
-
-CREATE INDEX idx_account_profile ON account(id_profile);
-CREATE INDEX idx_card_profile ON card(id_profile);
-
-CREATE INDEX idx_transaction_account ON transaction(id_account);
-CREATE INDEX idx_transaction_card ON transaction(id_card);
-
-CREATE INDEX idx_invoice_card ON invoice(id_card);
+CREATE INDEX idx_card_profile ON card(profile_id);
+CREATE INDEX idx_card_flag ON card(card_flag_id);
+CREATE INDEX idx_card_transaction_card ON card_transaction(card_id);
+CREATE INDEX idx_card_transaction_type ON card_transaction(transaction_type_id);
+CREATE INDEX idx_card_transaction_category ON card_transaction(category_id);
+CREATE INDEX idx_category_color ON category(color_id);
+CREATE INDEX idx_account_profile ON account(profile_id);
+CREATE INDEX idx_account_company ON account(account_company_id);
+CREATE INDEX idx_account_type ON account(account_type_id);
+CREATE INDEX idx_invoice_card ON invoice(card_id);
+CREATE INDEX idx_invoice_month ON invoice(date_due);
+CREATE INDEX idx_account_transaction_account ON account_transaction(account_id);
+CREATE INDEX idx_account_transaction_type ON account_transaction(transaction_type_id);
+CREATE INDEX idx_account_transaction_category ON account_transaction(category_id);

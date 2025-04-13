@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "invoice")
@@ -18,6 +18,10 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "card_id", unique = true)
+    private Card card;
 
     @Column(name = "amount_due", precision = 12, scale = 2, nullable = false)
     private BigDecimal amountDue;

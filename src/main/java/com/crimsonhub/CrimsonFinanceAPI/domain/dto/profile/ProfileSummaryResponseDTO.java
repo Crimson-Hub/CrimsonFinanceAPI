@@ -18,13 +18,11 @@ import java.util.Date;
  *
  * @param id Identificador único do perfil.
  * @param email E-mail associado ao perfil.
- * @param createdAt Data de criação do perfil.
  *
  * @author Crimson Solutions
  * @version 1.0
  * @since 2024-01-01
  */
 public record ProfileSummaryResponseDTO(Long id,
-                                        String email,
-                                        Date createdAt) {
+                                        String email) {
 }

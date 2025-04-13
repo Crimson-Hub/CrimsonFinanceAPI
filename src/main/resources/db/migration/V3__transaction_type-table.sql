@@ -8,4 +8,5 @@ INSERT INTO transaction_type VALUES
 (2, 'Despesa'),
 (3, 'Transferência'),
 (4, 'Ajuste'),
-(5, 'Estorno');
+(5, 'Estorno'),
+(6, 'Pagamento');

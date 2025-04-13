@@ -19,6 +19,14 @@ public class CardTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "card_id", unique = true)
+    private Card card;
+
     @Column(name = "amount", precision = 12, scale = 2, nullable = false)
     private BigDecimal amount;
 
@@ -31,7 +39,6 @@ public class CardTransaction {
     @Column(name = "transaction_date", nullable = false)
     private Date transactionDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    @Column(name = "category_id", nullable = false)
+    private Long category;
 }
